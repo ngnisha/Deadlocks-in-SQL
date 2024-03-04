@@ -145,3 +145,23 @@ because it's DEADLOCK_PRIORITY (Normal) is lower than the DEADLOCK_PRIORITY of T
 
 
 
+---When deadlocks occur, SQL Server chooses one of the transactions as the deadlock victim and rolls it back.
+There are several ways in SQL Server to track down the queries that are causing deadlocks.
+One of the options is to use SQL Server trace flag 1222 to write the deadlock information to the SQL Server error log.
+
+Enable Trace flag : To enable trace flags use DBCC command.
+-1 parameter indicates that the trace flag must be set at the global level.
+If you omit -1 parameter the trace flag will be set only at the session level.
+
+DBCC Traceon(1222, -1)
+
+To check the status of the trace flag
+DBCC TraceStatus(1222, -1)
+
+To turn off the trace flag
+DBCC Traceoff(1222, -1)
+
+To read the error log
+execute sp_readerrorlog
+
+
